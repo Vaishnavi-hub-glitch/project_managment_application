@@ -34,17 +34,24 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Project updateProject(Project project) throws ProjectNotFoundException {
         // Check if the project exists
-        if (!projectRepository.existsById(project.getProjectId())) {
-            throw new ProjectNotFoundException("Project not found with ID: " + project.getProjectId());
-        }
+        Project existingProject = projectRepository.findById(project.getProjectId())
+                .orElseThrow(()->new ProjectNotFoundException("project not found with ID: "+ project.getProjectId()));
+        existingProject.setProjectName(project.getProjectName());
+        existingProject.setProjectDescription(project.getProjectDescription());
+        existingProject.setStartDate(project.getStartDate());
+        existingProject.setEndDate(project.getEndDate());
         return projectRepository.save(project);
-    }
+        }
 
     @Override
     public void deleteProject(Long projectId) throws ProjectNotFoundException {
+
         if (!projectRepository.existsById(projectId)) {
             throw new ProjectNotFoundException("Project not found with ID: " + projectId);
         }
         projectRepository.deleteById(projectId);
+
     }
+
 }
+
