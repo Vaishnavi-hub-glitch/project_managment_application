@@ -1,0 +1,50 @@
+.landing-page {
+    background-color: white; 
+    font-family: Calibri, sans-serif; 
+    text-align: center; 
+    padding: 1px; 
+}
+
+.content {
+    margin-top: 10rem; 
+}
+
+.h4 {
+    color: rgb(78, 75, 75); 
+    margin-top: 1.5rem;
+}
+
+.button {
+    margin-top: 20px; 
+}
+
+button {
+    padding: 10px 20px; 
+    margin: 5px; 
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer; 
+    background-color: dodgerblue; 
+    color: white; 
+    margin-top: 2rem;
+
+}
+
+.login_button{
+
+    padding: 10px 20px; 
+    margin: 5px; 
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer; 
+    background-color: gray; 
+    color: white; 
+}
+
+.login_button:hover {
+ background-color: lightgreen
+}
+
+button:hover {
+    background-color: lightgreen
+}
