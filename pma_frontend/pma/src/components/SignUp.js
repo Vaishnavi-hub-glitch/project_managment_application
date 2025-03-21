@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Header from './Header'; // Import your Header component
-import { useNavigate } from 'react-router-dom';
+import Header from './Header'; 
+import { useNavigate, Link } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Import SweetAlert2 for notifications
 
 const Signup = () => {
     const [name, setName] = useState('');
@@ -11,7 +12,7 @@ const Signup = () => {
     const navigate = useNavigate();
 
     const validateName = (name) => {
-        const nameRegex = /^[A-Z][a-zA-Z]*$/; // First letter uppercase
+        const nameRegex = /^[A-Z][a-zA-Z]*$/; 
         return nameRegex.test(name);
     };
 
@@ -19,9 +20,8 @@ const Signup = () => {
         return email.endsWith('@yash.com');
     };
     
-
     const validatePassword = (password) => {
-        return password.length >= 6; // Minimum length for password
+        return password.length >= 6; 
     };
 
     const handleNameChange = (e) => {
@@ -46,7 +46,7 @@ const Signup = () => {
         if (!validateEmail(value)) {
             setErrors((prevErrors) => ({
                 ...prevErrors,
-                email: 'Email must be  end with @yash.com.',
+                email: 'Email must end with @yash.com.',
             }));
         } else {
             setErrors((prevErrors) => ({
@@ -96,7 +96,7 @@ const Signup = () => {
             newErrors.name = 'Name must start with an uppercase letter.';
         }
         if (!validateEmail(email)) {
-            newErrors.email = 'Email must be at least 8 characters long and end with @yash.com.';
+            newErrors.email = 'Email must end with @yash.com.';
         }
         if (!validatePassword(password)) {
             newErrors.password = 'Password must be at least 6 characters long.';
@@ -116,67 +116,80 @@ const Signup = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name, email, password }), // Make sure formData is the correct object   
+                body: JSON.stringify({ name, email, password }),   
             });
 
-            if(response.ok){
-                navigate('/login')
-            }
-    
-            if (!response.ok) {
+            if (response.ok) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'You have successfully registered.',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                }).then(() => {
+                    navigate('/login'); // Redirect to login page after success
+                });
+            } else {
                 console.log(await response.json()); // Log the response for debugging
-                navigate('/login');
                 throw new Error('Signup failed');
             }
         } catch (error) {
             setErrors({ submit: 'Registration failed. Please try again.' });
+            Swal.fire({
+                title: 'Error!',
+                text: 'Registration failed. Please try again.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
         }
     };
     
     return (
         <div className="landing-page">
-            <Header/>
-           
+            <Header />
             <form className="login-form" onSubmit={handleSubmit}>
-            <h2>Signup</h2>
-            <p>Create your account</p>
+                <h1>Signup</h1>
+                <p>Create your account</p>
                 <div className="form-group">
-                    <label>Name:</label>
                     <input
                         type="text"
                         value={name}
+                        placeholder='Name'
                         onChange={handleNameChange}
                     />
                     {errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
                 </div>
                 <div className="form-group">
-                    <label>Email:</label>
                     <input
                         type="email"
                         value={email}
+                        placeholder='Email'
                         onChange={handleEmailChange}
                     />
                     {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
                 </div>
                 <div className="form-group">
-                    <label>Password:</label>
                     <input
                         type="password"
                         value={password}
+                        placeholder='Password'
                         onChange={handlePasswordChange}
                     />
                     {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
                 </div>
                 <div className="form-group">
-                    <label>Confirm Password:</label>
                     <input
                         type="password"
                         value={confirmPassword}
+                        placeholder='Confirm Password'
                         onChange={handleConfirmPasswordChange}
                     />
                     {errors.confirmPassword && <p style={{ color: 'red' }}>{errors.confirmPassword}</p>}
                 </div>
                 <button type="submit" className="submit-button">Sign Up</button>
+                {errors.submit && <p style={{ color: 'red' }}>{errors.submit}</p>}
+                <div className="login-link">
+                    <p>Already have an account? <Link to="/login">Login here</Link></p>
+                </div>
             </form>
         </div>
     );

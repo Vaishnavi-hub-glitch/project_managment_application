@@ -19,6 +19,13 @@
     margin-left: 18rem;
   }
 
+  .h1{
+
+    font-weight: normal;
+    margin-top: -5rem;
+    margin-right: 9rem;
+  }
+
   .project-title {
     margin-top: 20px;
     font-size: 24px;
@@ -81,4 +88,16 @@
     background-color: aliceblue;
     margin-top: 0.1rem;
     width: 100%;
+  }
+
+  .project-board:hover{
+    background-color: rgb(165, 214, 235);
+  }
+
+  .project-update:hover{
+    background-color: rgb(165, 214, 235);
+  }
+
+  .project-delete:hover{
+    background-color: rgb(165, 214, 235);
   }

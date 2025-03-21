@@ -16,8 +16,9 @@
     margin-top: 8rem;
 }
 
-h2 {
-    margin-bottom: 20px; /* Space below the heading */
+h1 {
+    margin-bottom: 20px; 
+    font-weight: normal;
 }
 
 .form-group {
