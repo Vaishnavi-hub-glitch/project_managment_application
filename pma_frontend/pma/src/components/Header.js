@@ -12,10 +12,10 @@ const Header = ({ onLogin, onSignup }) => {
                 </Link>
                
             </div>
-            <div className="nav-right">
+            {/* <div className="nav-right">
                  <Link to="/signup" className="signup_login_link">Sign Up</Link> 
                  <Link to="/login" className="signup_login_link">Login</Link> 
-                 </div>
+                 </div> */}
         </nav>
     );
 };
