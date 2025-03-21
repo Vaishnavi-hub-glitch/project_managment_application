@@ -5,6 +5,8 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name = "project")
 @Data
@@ -16,6 +18,7 @@ public class Project {
     private String projectDescription;
     private Date startDate;
     private Date endDate;
+    private List<Integer> userList;
 
     public Long getProjectId() {
         return projectId;
@@ -55,5 +58,13 @@ public class Project {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public List<Integer> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<Integer> userList) {
+        this.userList = userList;
     }
 }
