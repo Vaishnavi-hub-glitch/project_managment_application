@@ -18,10 +18,16 @@ public class ProjectController {
     private ProjectService projectService;
 
     @PostMapping("/create")
-    public Project createProject(@RequestBody Project project) {
-        return projectService.saveProject(project);
-
+    public ResponseEntity<?> createProject(@RequestBody Project project) {
+        try {
+            // Logic to create the project
+            Project createdProject = projectService.saveProject(project);
+            return ResponseEntity.ok(createdProject); // Return the created project as JSON
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\": \"Project creation failed\"}");
+        }
     }
+
 
     @GetMapping("/list")
     public List<Project> getAllProjects() {

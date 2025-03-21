@@ -3,6 +3,7 @@ package com.yash.pma.service;
 import com.yash.pma.domain.Project;
 import com.yash.pma.exception.ProjectNotFoundException;
 import com.yash.pma.repository.ProjectRepository;
+import com.yash.pma.repository.UserRepository;
 import com.yash.pma.serviceimpl.ProjectServiceImpl;
 import com.yash.pma.serviceimpl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,6 +35,9 @@ public class ProjectServiceImplTest {
 
     @MockitoBean
     private ProjectRepository projectRepository;
+
+    @MockitoBean
+    private UserRepository userRepository;
 
     @BeforeEach
     public void setUp() {

@@ -1,2 +1,5 @@
-package com.yash.pma.domain;public enum Priority {
+package com.yash.pma.util;
+
+public enum Priority {
+    HIGH, LOW, MEDIUM;
 }

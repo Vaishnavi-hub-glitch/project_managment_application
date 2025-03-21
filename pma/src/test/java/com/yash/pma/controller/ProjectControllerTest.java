@@ -47,10 +47,10 @@ public class ProjectControllerTest {
 
         when(projectService.saveProject(any(Project.class))).thenReturn(project);
 
-        Project createdProject = projectController.createProject(project);
+        ResponseEntity<?> createdProject = projectController.createProject(project);
 
         assertNotNull(createdProject);
-        assertEquals("Test Project", createdProject.getProjectName());
+        assertEquals("Test Project", createdProject.getBody());
         verify(projectService, times(1)).saveProject(any(Project.class));
     }
 

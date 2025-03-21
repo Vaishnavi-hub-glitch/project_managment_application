@@ -4,6 +4,7 @@ import com.yash.pma.domain.User;
 import com.yash.pma.exception.UserNotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -12,6 +13,6 @@ public interface UserService {
     List<User> findAllUsers();
     User updateUser (User user) throws UserNotFoundException;
     void deleteUser (Long userId);
-
+    Optional<User> findById(Long userId);
 
 }

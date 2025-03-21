@@ -1,5 +1,6 @@
 package com.yash.pma.domain;
 
+import com.yash.pma.util.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,10 +20,12 @@ public class User implements UserDetails {
     private Long userId;
 
     private Long employeeId;
-
     private String name;
     private String email;
     private String password;
+    private Role userRole;
+    private List<Integer> tasks;
+    private Integer projects;
 
     public Long getUserId() {
         return userId;
@@ -54,6 +57,30 @@ public class User implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Role getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Role userRole) {
+        this.userRole = userRole;
+    }
+
+    public List<Integer> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Integer> tasks) {
+        this.tasks = tasks;
+    }
+
+    public Integer getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Integer projects) {
+        this.projects = projects;
     }
 
     @Override
